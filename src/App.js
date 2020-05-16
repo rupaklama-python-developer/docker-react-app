@@ -8,7 +8,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Docker-compose is cool!
+          This is a new branch - feature branch!
         </p>
         <a
           className="App-link"
