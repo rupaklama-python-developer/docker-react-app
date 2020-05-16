@@ -18,5 +18,5 @@ FROM nginx
 EXPOSE 80
 
 # to copy build dir & put it inside nginx
-COPY --from=builder /app/build /usr/share/nginx/html
+COPY --from=0 /app/build /usr/share/nginx/html
 
