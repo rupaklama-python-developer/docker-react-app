@@ -15,3 +15,17 @@ before_install:
 # this command to run test
 script:
     - docker run -e CI=true rupaklama/docker-react-app npm run test
+
+# to deploy to AWS
+deploy:
+    provider: elasticbeanstalk
+    region: "us-west-1"
+    app: "docker-react-app"
+    env: "DockerReactApp-env"
+    bucket_name: "elasticbeanstalk-us-west-1-772606157045"
+    bucket_path: "docker-react-app"
+    on:
+        branch: master
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
+    
