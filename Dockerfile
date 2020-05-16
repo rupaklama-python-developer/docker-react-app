@@ -14,6 +14,9 @@ RUN npm run build
 # build dir is located inside the current dir - /app/build
 FROM nginx
 
+# port for incoming traffic
+EXPOSE 80
+
 # to copy build dir & put it inside nginx
 COPY --from=builder /app/build /usr/share/nginx/html
 
