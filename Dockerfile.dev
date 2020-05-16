@@ -1,0 +1,15 @@
+# specify a base image
+FROM node:alpine
+
+# creating dir to store our local files inside usr/app in the container
+WORKDIR '/app'
+
+# Install some dependencies
+# use package.json to install npm into the app dir
+COPY package.json .
+RUN npm install
+# copy all dir/files to the working dir - app
+COPY . .
+
+# Default command
+CMD ["npm", "run", "start"]

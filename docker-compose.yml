@@ -1,0 +1,46 @@
+# version of docker compose file
+version: '3'
+
+# here's the list of what we want to do
+# service is like type of container
+services:
+    # this container is responsible for hosting our dev server
+    # you can name anything
+    # react app, build from local Dockerfile 
+    web:
+        # to prevent react app exit issue
+        stdin_open: true
+
+        # from the current dir .
+        build:
+            # location to pull the image from, current work dir
+            context: .
+            # location of dockerfile image for this web app
+            dockerfile: Dockerfile.dev
+
+
+        # specify port
+        # - is array/list in yml file
+        ports:
+            - "3000:3000"
+            # from local machine to container
+        
+        # volumes - no need to restart/rebuild docker when changes updated & storage for dir/files
+        volumes: 
+            - /app/node_modules
+            - .:/app
+
+    # second service is to run only test
+    # this container running test when file updates 
+    tests:
+        build:
+            context: .
+            dockerfile: Dockerfile.dev
+
+        volumes: 
+            - /app/node_modules
+            - .:/app
+        
+        # overriding default test start command
+        command: ["npm", "run", "test"]
+
